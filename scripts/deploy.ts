@@ -25,8 +25,7 @@ async function main() {
 
   //initialize wallet to send testnet transactions from
   const acct = cfx.wallet.addPrivateKey(process.env.CFX_PRIV ?? '')
-  const globalURI =
-    'https://ipfs.io/ipfs/Qmde5h3WiQkz4jefTX2KXVaG5abjfM4kmkKidmeXGh214E?filename=metadata.json'
+  const globalURI = 'ipfs://Qmdx57D3VobssFgQPUrKyXf26h6Mxi1fMYfXwqxV6JFqXi'
   // We get the contract to deploy
   const contract = cfx.Contract({ abi, bytecode })
 
@@ -45,7 +44,7 @@ async function main() {
   //call the mint function
   const tx = await nftContract
     //@ts-ignore
-    .mintToken(acct.toString())
+    .mintToken(acct.toString(), 5)
     .sendTransaction({ from: acct.toString() })
   console.log('minted an NFT to', acct.toString(), 'in txn ', tx)
 }
